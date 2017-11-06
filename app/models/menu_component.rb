@@ -1,0 +1,2 @@
+class MenuComponent < ApplicationRecord
+end
