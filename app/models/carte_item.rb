@@ -1,0 +1,3 @@
+class CarteItem < CarteComponent
+
+end
