@@ -12,6 +12,17 @@ class CarteComponent < ApplicationRecord
 		%w(CarteItem Carte)
 	end
 
-	
+	# Metodos Composite Pattern
+	def add(menu_component)
+		raise UnssoportedOperationError, "this operation must be implemented in subclasses"
+	end
+
+	def remove(menu_component)
+		raise UnssoportedOperationError, "this operation must be implemented in subclasses"
+	end
+
+	def get_child(i)
+		raise UnssoportedOperationError, "this operation must be implemented in subclasses"
+	end
 
 end

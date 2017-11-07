@@ -1,0 +1,3 @@
+class UnssoportedOperationError < StandardError
+
+end
