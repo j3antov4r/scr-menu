@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106064722) do
+ActiveRecord::Schema.define(version: 20171107044515) do
 
   create_table "carte_components", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 20171106064722) do
     t.string   "type"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "lineage"
+    t.integer  "parent_id"
+    t.string   "calories"
+    t.string   "tags"
+    t.boolean  "vegetarian"
+    t.index ["parent_id"], name: "index_carte_components_on_parent_id"
   end
 
 end
