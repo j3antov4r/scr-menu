@@ -7,12 +7,16 @@ class CarteComponent < ApplicationRecord
 	scope :cartes, -> { where(type: 'Carte') } 
 	scope :carte_items, -> { where(type: 'CarteItem') }
 
-	#hace que la STI funcione, cada subclase debe estar definida aqui
+	# Hace que la STI funcione, cada subclase debe estar definida aqui
 	def self.types
 		%w(CarteItem Carte)
 	end
 
-	# Metodos Composite Pattern
+	# Validaciones comunes para todos los CarteComponents
+	validates :name, :description, presence: true
+
+
+	# Metodos Composite Pattern, debe implementarse en la clase Composite
 	def add(menu_component)
 		raise UnssoportedOperationError, "this operation must be implemented in subclasses"
 	end

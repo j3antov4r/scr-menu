@@ -1,5 +1,9 @@
 class Carte < CarteComponent
 
+	# Validaciones
+	validates :name, length: {minimum: 4, maximum: 50}
+	validades :description, length: {minimum: 4, maximum: 140}
+
 	# Metodos Composite Pattern
 	def add(menu_component)
 		menu_component.parent = self
@@ -15,7 +19,8 @@ class Carte < CarteComponent
 	end
 
 	def get_child(i)
-		#CarteComponent.find_by()
+		#mientras no tengamos propiedad orden de CarteComponent haremos asi
+		my_child= self.composites.limit(1).offset(i-1);
 	end
 
 end
