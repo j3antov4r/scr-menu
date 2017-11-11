@@ -1,17 +1,26 @@
 Rails.application.routes.draw do
-  get 'carte_components_controller/index'
+  
 
-  get 'carte_components_controller/show'
+  get 'carte_components/index'
 
-  get 'carte_components_controller/new'
+  get 'carte_components/show'
 
-  get 'carte_components_controller/edit'
+  get 'carte_components/new'
 
-  get 'carte_components_controller/create'
+  get 'carte_components/edit'
 
-  get 'carte_components_controller/update'
+  get 'carte_components/create'
 
-  get 'carte_components_controller/destroy'
+  get 'carte_components/update'
+
+  get 'carte_components/destroy'
+
+  resources :cartes, controller: 'carte_components', type: 'Carte'
+
+  resources :carte_items, controller: 'carte_components', type: 'CarteItem'
+
+  
+  root 'carte_components#home'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

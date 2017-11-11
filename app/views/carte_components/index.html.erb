@@ -1,0 +1,49 @@
+<% 
+	label_type = params[:type].pluralize
+	route_new= params[:type] == "Carte" ? "/cartes/new" : "/carte_items/new"
+	show_price= params[:type] == "Carte" ? false : true
+%>
+<h1 class="display-3 text-center">All <%=label_type %></h1>
+<p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+
+<div class="float-right align-items-center my-1 mr-3">
+
+  <%=link_to " " , sti_carte_component_path(@type, nil, :new), :class => "fa fa-plus btn btn-primary btn-sm " %>
+	
+</div>
+
+<div class="container">
+	<table class="table table-striped">
+	  <thead class="table-primary">
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Name</th>
+	      <th scope="col">Description</th>
+	      <% if show_price == true %>
+	      <th scope="col">Price</th>
+	      <% end %>
+	      <th scope="col" colspan="3"></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% i = 0 
+	  		@carte_components.each do | car| 
+	  		i = i + 1 
+	  	%>
+	    <tr>
+	      <th scope="row"><%= i %></th>
+	      <td><%= car.name %></td>
+	      <td><%= car.description %></td>
+	      <% if show_price == true %>
+	      <td><%= car.price %></td>
+	      <% end %>
+	      <td><%= link_to 'Show', sti_carte_component_path(car.type, car) %></td>
+        <td><%= link_to 'Edit', edit_carte_path(car) %></td>
+        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	    </tr>
+	    <% end %>
+	  </tbody>
+	  </table>
+</div>
+
+

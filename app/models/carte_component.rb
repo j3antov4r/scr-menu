@@ -1,5 +1,7 @@
 class CarteComponent < ApplicationRecord
 
+	#la clase no puede ser abstracta para STI
+
 	has_many :composites, class_name: "CarteComponent", foreign_key: "parent_id" 
 
 	belongs_to :parent, class_name: "CarteComponent"

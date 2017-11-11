@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ScrMenu</title>
+    <title>Carte Screen App</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,15 @@
   </head>
 
   <body>
-    <%= yield %>
+  	<section id="header">
+  		<%= render 'layouts/navigation' %>
+  	</section>
+  	<div class="container">
+  		<%= yield %>
+  	</div>
+  	<section>
+  		
+  	</section>
+    
   </body>
 </html>

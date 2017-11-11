@@ -2,7 +2,7 @@ class Carte < CarteComponent
 
 	# Validaciones
 	validates :name, length: {minimum: 4, maximum: 50}
-	validades :description, length: {minimum: 4, maximum: 140}
+	validates :description, length: {minimum: 4, maximum: 140}
 
 	# Metodos Composite Pattern
 	def add(menu_component)
