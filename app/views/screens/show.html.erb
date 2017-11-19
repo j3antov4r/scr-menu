@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @screen.name %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @screen.active %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @screen.order %>
+</p>
+
+<p>
+  <strong>Bgcolor:</strong>
+  <%= @screen.bgcolor %>
+</p>
+
+<p>
+  <strong>Bgimage:</strong>
+  <%= @screen.bgimage %>
+</p>
+
+<p>
+  <strong>Display:</strong>
+  <%= @screen.display %>
+</p>
+
+<%= link_to 'Edit', edit_screen_path(@screen) %> |
+<%= link_to 'Back', screens_path %>

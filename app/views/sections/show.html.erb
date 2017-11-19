@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @section.name %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @section.active %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @section.position %>
+</p>
+
+<p>
+  <strong>Class:</strong>
+  <%= @section.class %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @section.order %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @section.tag %>
+</p>
+
+<p>
+  <strong>Type section:</strong>
+  <%= @section.type_section %>
+</p>
+
+<p>
+  <strong>Page:</strong>
+  <%= @section.page %>
+</p>
+
+<%= link_to 'Edit', edit_section_path(@section) %> |
+<%= link_to 'Back', sections_path %>

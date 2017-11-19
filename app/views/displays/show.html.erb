@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @display.name %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @display.active %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @display.order %>
+</p>
+
+<p>
+  <strong>Resolution:</strong>
+  <%= @display.resolution %>
+</p>
+
+<%= link_to 'Edit', edit_display_path(@display) %> |
+<%= link_to 'Back', displays_path %>

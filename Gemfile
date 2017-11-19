@@ -33,10 +33,27 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'autoprefixer-rails'
 
+gem 'CFPropertyList', '~> 2.3.4'
+
 #Usando Bootstrap para el Look and Feel
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 
 gem 'fontawesome-rails', '~> 4.0', '>= 4.0.3.2'
+
+#manejo de upload e imagenes
+
+
+gem 'carrierwave', '~> 1.2', '>= 1.2.1'
+gem 'mini_magick', '~> 4.8'
+
+# Manejo de AWS y otros Cloud Services
+gem 'fog', '~> 1.42'
+
+# Paginaciones en views
+gem 'crass', '~> 1.0', '>= 1.0.3'
+gem 'will_paginate', '~> 3.1', '>= 3.1.6'
+gem 'bootstrap-will_paginate', '~> 1.0'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

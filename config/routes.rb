@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   
 
+  resources :sections
+  resources :type_sections
+  resources :pages
+  resources :screens
+  resources :displays
   get 'carte_components/index'
 
   get 'carte_components/show'

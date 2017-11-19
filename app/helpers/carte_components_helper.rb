@@ -11,5 +11,7 @@ module CarteComponentsHelper
  	def format_action(action)
  		action ? "#{action}_" : ""
  	end
+
+ 	
 end
 

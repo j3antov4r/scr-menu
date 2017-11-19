@@ -9,15 +9,13 @@
   </head>
 
   <body>
-  	<section id="header">
+  	<section id="header" >
   		<%= render 'layouts/navigation' %>
   	</section>
   	<div class="container">
-  		<%= yield %>
+      <%= render 'layouts/messages' %>
+      <%= yield %>
   	</div>
-  	<section>
-  		
-  	</section>
-    
+  	
   </body>
 </html>

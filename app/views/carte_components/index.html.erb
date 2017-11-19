@@ -1,14 +1,13 @@
 <% 
-	label_type = params[:type].pluralize
-	route_new= params[:type] == "Carte" ? "/cartes/new" : "/carte_items/new"
+	label_type = params[:type]
 	show_price= params[:type] == "Carte" ? false : true
 %>
-<h1 class="display-3 text-center">All <%=label_type %></h1>
+<h1 class="display-3 text-center">All <%=label_type.pluralize %></h1>
 <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
 
 <div class="float-right align-items-center my-1 mr-3">
 
-  <%=link_to " " , sti_carte_component_path(@type, nil, :new), :class => "fa fa-plus btn btn-primary btn-sm " %>
+  <%=link_to " " , sti_carte_component_path(@type, nil, :new), 'data-toggle' => "tooltip", :title => "New #{label_type}", :class => "fa fa-plus btn btn-success btn-sm " %>
 	
 </div>
 
@@ -19,10 +18,12 @@
 	      <th scope="col">#</th>
 	      <th scope="col">Name</th>
 	      <th scope="col">Description</th>
+	      <th scope="col">Path</th>
+	      <th scope="col">Published</th>
 	      <% if show_price == true %>
 	      <th scope="col">Price</th>
 	      <% end %>
-	      <th scope="col" colspan="3"></th>
+	      <th scope="col" colspan="2"></th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -32,18 +33,28 @@
 	  	%>
 	    <tr>
 	      <th scope="row"><%= i %></th>
-	      <td><%= car.name %></td>
+	      <td><%= link_to car.name, sti_carte_component_path(car.type, car) %></td>
 	      <td><%= car.description %></td>
+	      <td><%= car.my_rel_path %></td>
+	      <td class="text-center"><% if car.published == true %> 
+	      			<i class="fa fa-check text-success"> </i>
+						<% else %>
+						<i class="fa fa-minus text-danger"> </i>
+						<% end %>
+	      </td>
 	      <% if show_price == true %>
 	      <td><%= car.price %></td>
 	      <% end %>
-	      <td><%= link_to 'Show', sti_carte_component_path(car.type, car) %></td>
-        <td><%= link_to 'Edit', edit_carte_path(car) %></td>
-        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	      
+        <td><%= link_to '', sti_carte_component_path(car.type, car, :edit), 'data-toggle' => "tooltip", :title => "Edit #{label_type}", :class => "fa fa-edit " %></td>
+        <td><%= link_to '', sti_carte_component_path(car.type, car), method: :delete,  data: { confirm: 'Are you sure?' } , 'data-toggle' => "tooltip", :title => "Delete #{label_type}", :class => "fa fa-times danger"%></td>
 	    </tr>
 	    <% end %>
 	  </tbody>
 	  </table>
+</div>
+<div class="d-flex justify-content-center ">
+	<%= will_paginate :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer %>
 </div>
 
 

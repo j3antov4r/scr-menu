@@ -1,35 +1,94 @@
- <% if carte_component.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(carte_component.errors.count, "error") %> prohibited this meat_type from being saved:</h2>
 
-      <ul>
-      <% carte_component.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= render 'shared/errors', obj: @carte_component %>
+
+
+
+
+<%= form_for carte_component , html:{multipart: true} do |f| %>
+
+<!-- Datos Basicos -->
+<div class="form-check text-right was-validated">
+  <%= f.label :published , class: 'custom-control custom-checkbox ' do %>
+  <%= f.check_box :published , class: 'custom-control-input' %>
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description">Published</span>
   <% end %>
-<div class="panel panel-default devise-bs">
-  <div class="panel-heading">
-    <h4><%= option %></h4>
-  </div>
- <div class="panel-body">
-<%= form_for(carte_component) do |f| %>
+</div>
   
-
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control'%>
+<div class="form-row">
+  <div class="form-group col-md-8">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control'%>
+      
+  </div>
+  <div class="form-group col-md-4">
+        <%= f.label "parent_id" %>
+        <%= f.collection_select :parent_id , @parents, :id, :name, {},  {:class => 'form-control custom-select'} %>
+      
   </div>
 
-  <div class="form-group">
+</div>
+<div class="form-group">
     <%= f.label :description %>
     <%= f.text_area :description , class: 'form-control'%>
   </div>
+<!-- Fin Datos Basicos -->
+<!-- Esto solo aparece para los Leaft: CarteItem -->
+<% if params[:type] == 'CarteItem' %>
+<div class="form-row">
+  <div class="form-group col-md-4">
+    <%= f.label :price %>
+    <%= f.text_field :price, class: 'form-control'%>
+  </div>
+  <div class="form-group col-md-4">
+    <%= f.label :calories %>
+    <%= f.text_field :calories, class: 'form-control'%>
+  </div>
+  <div class="form-check text-rigth col-md-4 align-items-center d-flex">
+    <%= f.label :vegetarian , class: 'custom-control custom-checkbox ' do %>
+    <%= f.check_box :vegetarian , class: 'custom-control-input'  %>
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">Vegetarian</span>
+    <% end %>
+  </div>
+</div>
 
-  <div class="actions">
+<% end %>  
+<!-- Fin Leaft: Carte-Item -->
+<!-- Imagen -->
+
+
+
+  <div class="form-group">
+    <label>Load Image</label>
+    
+    <%= f.file_field :image, class: 'custom-file'  %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+  <div class="form-group  justify-content-center d-flex">
+    <div class="card mb-3">
+      <%= image_tag(@carte_component.image_url, class: "card-img-top", size: '100%', alt: @carte_component.name ) if @carte_component.image? %>
+      <div class="card-body">
+        <div class="row">
+        <h4 class="card-title col-sm-10 "><%= @carte_component.name %></h4>
+        <h4 class="card-title col-sm-2 text-center "><%= @carte_component.price %></h4>
+        </div>
+        
+        <p class="card-text"><%= @carte_component.description %></p>
+        
+      </div>
+      <%= render 'descendents' if @carte_component.type == "Carte" %>
+    </div>
+    
+  </div>
+
+
+<!-- Fin Imagen --> 
+  
+
+
+
+  <div class="actions d-flex justify-content-center m-3">
     <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
- </div>
- </div>

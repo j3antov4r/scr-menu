@@ -1,2 +1,8 @@
-<h1>CarteComponents#edit</h1>
-<p>Find me in app/views/carte_components/edit.html.erb</p>
+<h1 class="display-3">Edit <%=@type.capitalize%></h1>
+
+
+<%= render 'form', carte_component: @carte_component , option: 'Edit '%>
+
+<div class="d-flex justify-content-center">
+	<%= link_to 'Back to index', sti_carte_component_path(@type ) %>
+</div>

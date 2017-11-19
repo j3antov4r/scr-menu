@@ -1,0 +1,8 @@
+<div class="card-footer">
+	
+		<p>Carte Items:</p>
+	
+	<% @carte_component.composites.each  do |c| %>
+		<a href="<%= sti_carte_component_path(c.type,c) %>" class="badge badge-info"><%=c.name %></a>
+	<% end %>
+</div>

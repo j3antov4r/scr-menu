@@ -1,0 +1,2 @@
+class TypeSection < ApplicationRecord
+end

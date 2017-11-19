@@ -1,0 +1,47 @@
+<%= form_for(screen) do |f| %>
+  <% if screen.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(screen.errors.count, "error") %> prohibited this screen from being saved:</h2>
+
+      <ul>
+      <% screen.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :active %>
+    <%= f.check_box :active %>
+  </div>
+
+  <div class="field">
+    <%= f.label :order %>
+    <%= f.number_field :order %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bgcolor %>
+    <%= f.text_field :bgcolor %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bgimage %>
+    <%= f.text_field :bgimage %>
+  </div>
+
+  <div class="field">
+    <%= f.label :display_id %>
+    <%= f.text_field :display_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107044515) do
+ActiveRecord::Schema.define(version: 20171114222205) do
 
   create_table "carte_components", force: :cascade do |t|
     t.string   "name"
@@ -18,14 +18,73 @@ ActiveRecord::Schema.define(version: 20171107044515) do
     t.float    "price"
     t.string   "image"
     t.string   "type"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "lineage"
     t.integer  "parent_id"
     t.string   "calories"
     t.string   "tags"
     t.boolean  "vegetarian"
+    t.boolean  "active"
+    t.boolean  "published",   default: true
     t.index ["parent_id"], name: "index_carte_components_on_parent_id"
+  end
+
+  create_table "displays", force: :cascade do |t|
+    t.string   "name",                      null: false
+    t.boolean  "active",     default: true
+    t.integer  "order"
+    t.string   "resolution"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string   "name",                      null: false
+    t.boolean  "active",     default: true
+    t.integer  "order"
+    t.string   "bgcolor"
+    t.string   "bgimage"
+    t.integer  "screen_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["screen_id"], name: "index_pages_on_screen_id"
+  end
+
+  create_table "screens", force: :cascade do |t|
+    t.string   "name",                      null: false
+    t.boolean  "active",     default: true
+    t.integer  "order"
+    t.string   "bgcolor"
+    t.string   "bgimage"
+    t.integer  "display_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["display_id"], name: "index_screens_on_display_id"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string   "name",                           null: false
+    t.boolean  "active",          default: true
+    t.string   "position"
+    t.string   "class"
+    t.integer  "order"
+    t.string   "tag"
+    t.integer  "type_section_id"
+    t.integer  "page_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["page_id"], name: "index_sections_on_page_id"
+    t.index ["type_section_id"], name: "index_sections_on_type_section_id"
+  end
+
+  create_table "type_sections", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.boolean  "active"
+    t.string   "abrev"
+    t.string   "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

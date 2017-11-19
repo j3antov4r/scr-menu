@@ -1,6 +1,6 @@
-<h1 class="display-3">CarteComponents#new</h1>
+<h1 class="display-3">New <%=@type.capitalize%></h1>
 
 
 <%= render 'form', carte_component: @carte_component , option: 'New '%>
 
-<%= link_to 'Back', cartes_path %>
+<%= link_to 'Back', sti_carte_component_path(@type ) %>

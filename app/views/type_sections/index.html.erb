@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Type Sections</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Active</th>
+      <th>Abrev</th>
+      <th>Tag</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @type_sections.each do |type_section| %>
+      <tr>
+        <td><%= type_section.name %></td>
+        <td><%= type_section.active %></td>
+        <td><%= type_section.abrev %></td>
+        <td><%= type_section.tag %></td>
+        <td><%= link_to 'Show', type_section %></td>
+        <td><%= link_to 'Edit', edit_type_section_path(type_section) %></td>
+        <td><%= link_to 'Destroy', type_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Type Section', new_type_section_path %>
