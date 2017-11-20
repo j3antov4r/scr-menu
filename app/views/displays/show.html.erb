@@ -1,24 +1,8 @@
-<p id="notice"><%= notice %></p>
+<h1 class="display-3">Show Display</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @display.name %>
-</p>
 
-<p>
-  <strong>Active:</strong>
-  <%= @display.active %>
-</p>
+<%= render 'form', display: @display , option: 'Show'%>
 
-<p>
-  <strong>Order:</strong>
-  <%= @display.order %>
-</p>
-
-<p>
-  <strong>Resolution:</strong>
-  <%= @display.resolution %>
-</p>
-
-<%= link_to 'Edit', edit_display_path(@display) %> |
-<%= link_to 'Back', displays_path %>
+<div class="d-flex justify-content-center">
+	<%= link_to 'Back to Displays', displays_path %>
+</div>

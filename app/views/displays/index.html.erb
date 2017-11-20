@@ -1,28 +1,42 @@
-<p id="notice"><%= notice %></p>
+<h1 class="display-3 text-center">All Displays</h1>
+<p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
 
-<h1>Displays</h1>
+<div class="float-right align-items-center my-1 mr-3">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Active</th>
-      <th>Order</th>
-      <th>Resolution</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <%=link_to " " , new_display_path, 'data-toggle' => "tooltip", :title => "New Display", :class => "fa fa-plus btn btn-success btn-sm " %>
+  
+</div>
+
+<div class="container">
+  <table class="table table-striped">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Order</th>
+        <th scope="col">Resolution</th>
+        <th scope="col">Active</th>
+        
+        <th scope="col" colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+
 
   <tbody>
-    <% @displays.each do |display| %>
+    <%  @displays.each do |display| %>
       <tr>
-        <td><%= display.name %></td>
-        <td><%= display.active %></td>
+        <td><%= link_to display.name, display %></td>
         <td><%= display.order %></td>
         <td><%= display.resolution %></td>
-        <td><%= link_to 'Show', display %></td>
-        <td><%= link_to 'Edit', edit_display_path(display) %></td>
-        <td><%= link_to 'Destroy', display, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="text-center"><% if display.active == true %> 
+              <i class="fa fa-check text-success"> </i>
+            <% else %>
+            <i class="fa fa-minus text-danger"> </i>
+            <% end %>
+        </td>
+        
+        <td><%= link_to '', edit_display_path(display),  'data-toggle' => "tooltip", :title => "Edit Display", :class => "fa fa-edit " %></td>
+        <td><%= link_to '', display_path(display), method: :delete,  data: { confirm: 'Are you sure?' } , 'data-toggle' => "tooltip", :title => "Delete Display", :class => "fa fa-times danger"%></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +44,4 @@
 
 <br>
 
-<%= link_to 'New Display', new_display_path %>
+

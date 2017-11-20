@@ -1,6 +1,6 @@
 class ScreensController < ApplicationController
   before_action :set_screen, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_displays_availables, only: [:edit, :new, :show]
   # GET /screens
   # GET /screens.json
   def index
@@ -14,7 +14,7 @@ class ScreensController < ApplicationController
 
   # GET /screens/new
   def new
-    @screen = Screen.new
+     @screen = Screen.new
   end
 
   # GET /screens/1/edit
@@ -28,7 +28,10 @@ class ScreensController < ApplicationController
 
     respond_to do |format|
       if @screen.save
-        format.html { redirect_to @screen, notice: 'Screen was successfully created.' }
+        format.html { 
+              flash[:success]= 'Screen was successfully created.'
+              redirect_to screens_path
+            }
         format.json { render :show, status: :created, location: @screen }
       else
         format.html { render :new }
@@ -42,7 +45,10 @@ class ScreensController < ApplicationController
   def update
     respond_to do |format|
       if @screen.update(screen_params)
-        format.html { redirect_to @screen, notice: 'Screen was successfully updated.' }
+        format.html { 
+              flash[:success]= 'Screen was successfully updated.'
+              redirect_to screens_path
+            }
         format.json { render :show, status: :ok, location: @screen }
       else
         format.html { render :edit }
@@ -56,7 +62,10 @@ class ScreensController < ApplicationController
   def destroy
     @screen.destroy
     respond_to do |format|
-      format.html { redirect_to screens_url, notice: 'Screen was successfully destroyed.' }
+      format.html { 
+              flash[:warning]= 'Screen was successfully destroyed.'
+              redirect_to screens_path
+            }
       format.json { head :no_content }
     end
   end
@@ -70,5 +79,10 @@ class ScreensController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def screen_params
       params.require(:screen).permit(:name, :active, :order, :bgcolor, :bgimage, :display_id)
+    end
+
+    def set_displays_availables
+      @displays = Display.where(active: true)
+   
     end
 end

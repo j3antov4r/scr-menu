@@ -1,37 +1,38 @@
-<%= form_for(display) do |f| %>
-  <% if display.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(display.errors.count, "error") %> prohibited this display from being saved:</h2>
 
-      <ul>
-      <% display.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+<%= render 'shared/errors', obj: @display %>
+<%= form_for(@display) do |f| %>
+  
+<% readonly = option == 'Show' ? true : false %>
+  <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name , class: "form-control"  , readonly: readonly %>
   </div>
 
-  <div class="field">
-    <%= f.label :active %>
-    <%= f.check_box :active %>
-  </div>
-
-  <div class="field">
-    <%= f.label :order %>
-    <%= f.number_field :order %>
-  </div>
-
-  <div class="field">
+  <div class="form-row">
+  <div class="form-group col-md-4">
     <%= f.label :resolution %>
-    <%= f.text_field :resolution %>
+    <%= f.text_field :resolution, class: 'form-control',  readonly: readonly %>
   </div>
+  <div class="form-group col-md-4">
+    <%= f.label :order %>
+    <%= f.number_field :order, class: 'form-control',  readonly: readonly %>
+  </div>
+  <div class="form-check text-rigth col-md-4 align-items-center d-flex">
+    <%= f.label :active , class: 'custom-control custom-checkbox ' do %>
+    <%= f.check_box :active , class: 'custom-control-input', disabled: readonly  %>
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">Active</span>
+    <% end %>
+  </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="actions d-flex justify-content-center m-3">
+    <% if option != 'Show' %>
+      <%= f.submit class: 'btn btn-primary'  %>
+    <% else %>
+      <%= link_to 'Edit', edit_display_path(display),  'data-toggle' => "tooltip", :title => "Edit Display", :class => "btn btn-primary mr-3" %></td>
+        <%= link_to 'Remove', display_path(display), method: :delete,  data: { confirm: 'Are you sure?' } , 'data-toggle' => "tooltip", :title => "Delete Display", :class => "btn btn-danger"%></td>
+    <% end %>
   </div>
 <% end %>

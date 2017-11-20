@@ -1,34 +1,8 @@
-<p id="notice"><%= notice %></p>
+<h1 class="display-3">Showing Screen</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @screen.name %>
-</p>
+<%= render 'form', screen: @screen , option: 'Show' %>
 
-<p>
-  <strong>Active:</strong>
-  <%= @screen.active %>
-</p>
+<div class="d-flex justify-content-center">
+  <%= link_to 'Back', screens_path %>
 
-<p>
-  <strong>Order:</strong>
-  <%= @screen.order %>
-</p>
-
-<p>
-  <strong>Bgcolor:</strong>
-  <%= @screen.bgcolor %>
-</p>
-
-<p>
-  <strong>Bgimage:</strong>
-  <%= @screen.bgimage %>
-</p>
-
-<p>
-  <strong>Display:</strong>
-  <%= @screen.display %>
-</p>
-
-<%= link_to 'Edit', edit_screen_path(@screen) %> |
-<%= link_to 'Back', screens_path %>
+</div>  

@@ -1,6 +1,12 @@
-<h1>Editing Display</h1>
+<h1 class="display-3">Editing Display</h1>
 
-<%= render 'form', display: @display %>
 
-<%= link_to 'Show', @display %> |
-<%= link_to 'Back', displays_path %>
+<%= render 'form', obj: @display , option: 'Edit '%>
+
+<div class="d-flex justify-content-center">
+	<%= link_to 'Back to index', displays_path %>
+</div>
+
+
+
+

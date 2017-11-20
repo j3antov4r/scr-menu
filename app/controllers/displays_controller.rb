@@ -19,6 +19,7 @@ class DisplaysController < ApplicationController
 
   # GET /displays/1/edit
   def edit
+
   end
 
   # POST /displays
@@ -28,7 +29,10 @@ class DisplaysController < ApplicationController
 
     respond_to do |format|
       if @display.save
-        format.html { redirect_to @display, notice: 'Display was successfully created.' }
+        format.html { 
+                      flash[:success]= 'Display was successfully created.' 
+                      redirect_to displays_path 
+                    }
         format.json { render :show, status: :created, location: @display }
       else
         format.html { render :new }
@@ -39,10 +43,14 @@ class DisplaysController < ApplicationController
 
   # PATCH/PUT /displays/1
   # PATCH/PUT /displays/1.json
+
   def update
     respond_to do |format|
       if @display.update(display_params)
-        format.html { redirect_to @display, notice: 'Display was successfully updated.' }
+        format.html { 
+                      flash[:success]= 'Display was successfully updated.'
+                      redirect_to displays_path 
+                     }
         format.json { render :show, status: :ok, location: @display }
       else
         format.html { render :edit }
@@ -56,7 +64,10 @@ class DisplaysController < ApplicationController
   def destroy
     @display.destroy
     respond_to do |format|
-      format.html { redirect_to displays_url, notice: 'Display was successfully destroyed.' }
+      format.html { 
+                    redirect_to displays_url 
+                    flash[:warning]= 'Display was successfully destroyed.' 
+                  }
       format.json { head :no_content }
     end
   end

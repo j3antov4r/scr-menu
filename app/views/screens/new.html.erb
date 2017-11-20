@@ -1,5 +1,6 @@
-<h1>New Screen</h1>
+<h1 class="display-3">New Screen</h1>
 
-<%= render 'form', screen: @screen %>
-
-<%= link_to 'Back', screens_path %>
+<%= render 'form', screen: @screen, option: 'New ' %>
+<div class="d-flex justify-content-center">
+	<%= link_to 'Back', screens_path %>
+</div>

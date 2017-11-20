@@ -1,37 +1,46 @@
-<p id="notice"><%= notice %></p>
+<h1 class="display-3 text-center">All Screens</h1>
+<p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
 
-<h1>Screens</h1>
+<div class="float-right align-items-center my-1 mr-3">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Active</th>
-      <th>Order</th>
-      <th>Bgcolor</th>
-      <th>Bgimage</th>
-      <th>Display</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <%=link_to " " , new_screen_path, 'data-toggle' => "tooltip", :title => "New Screen", :class => "fa fa-plus btn btn-success btn-sm " %>
+  
+</div>
+
+<div class="container">
+  <table class="table table-striped">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Order</th>
+        <th scope="col">BgColor</th>
+        <th scope="col">Displayed on</th>
+        <th scope="col">Active</th>
+        
+        <th scope="col" colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+
 
   <tbody>
-    <% @screens.each do |screen| %>
+    <%  @screens.each do |screen| %>
       <tr>
-        <td><%= screen.name %></td>
-        <td><%= screen.active %></td>
+        <td><%= link_to screen.name, display %></td>
         <td><%= screen.order %></td>
         <td><%= screen.bgcolor %></td>
-        <td><%= screen.bgimage %></td>
-        <td><%= screen.display %></td>
-        <td><%= link_to 'Show', screen %></td>
-        <td><%= link_to 'Edit', edit_screen_path(screen) %></td>
-        <td><%= link_to 'Destroy', screen, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= screen.display.name%></td>
+        <td class="text-center"><% if screen.active == true %> 
+              <i class="fa fa-check text-success"> </i>
+            <% else %>
+            <i class="fa fa-minus text-danger"> </i>
+            <% end %>
+        </td>
+        
+        <td><%= link_to '', edit_screen_path(screen),  'data-toggle' => "tooltip", :title => "Edit Display", :class => "fa fa-edit " %></td>
+        <td><%= link_to '', screen_path(screen), method: :delete,  data: { confirm: 'Are you sure?' } , 'data-toggle' => "tooltip", :title => "Delete Display", :class => "fa fa-times danger"%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Screen', new_screen_path %>

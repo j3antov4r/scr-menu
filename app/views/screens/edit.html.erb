@@ -1,6 +1,8 @@
-<h1>Editing Screen</h1>
+<h1 class="display-3">Editing Screen</h1>
 
-<%= render 'form', screen: @screen %>
+<%= render 'form', screen: @screen , option: 'Edit ' %>
 
-<%= link_to 'Show', @screen %> |
-<%= link_to 'Back', screens_path %>
+<div class="d-flex justify-content-center">
+	<%= link_to 'Back', screens_path %>
+
+</div>	

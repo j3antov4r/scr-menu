@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
 
+  get 'configurations/rake'
+
+  get 'configurations/routes'
+
   resources :sections
   resources :type_sections
   resources :pages
