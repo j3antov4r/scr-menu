@@ -54,6 +54,11 @@ gem 'crass', '~> 1.0', '>= 1.0.3'
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 gem 'bootstrap-will_paginate', '~> 1.0'
 
+#gem 'railties', '~> 5.1', '>= 5.1.4'
+
+# Color Picker 
+gem 'bootstrap-colorpicker-rails', '~> 0.4.0'
+#gem 'kolor-picker', '~> 0.1.3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
