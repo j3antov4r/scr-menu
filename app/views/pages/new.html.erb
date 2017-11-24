@@ -1,5 +1,7 @@
-<h1>New Page</h1>
 
-<%= render 'form', page: @page %>
+<h1 class="display-3">New Page</h1>
 
-<%= link_to 'Back', pages_path %>
+<%= render 'form', page: @page, option: 'New ' %>
+<div class="d-flex justify-content-center">
+	<%= link_to 'Back', pages_path %>
+</div>

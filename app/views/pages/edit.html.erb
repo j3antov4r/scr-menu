@@ -1,6 +1,7 @@
-<h1>Editing Page</h1>
 
-<%= render 'form', page: @page %>
+<h1 class="display-3">Editing Page</h1>
 
-<%= link_to 'Show', @page %> |
-<%= link_to 'Back', pages_path %>
+<%= render 'form', page: @page, option: 'Edit ' %>
+<div class="d-flex justify-content-center">
+	<%= link_to 'Back', pages_path %>
+</div>

@@ -1,47 +1,88 @@
-<%= form_for(page) do |f| %>
-  <% if page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
-
-      <ul>
-      <% page.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= render 'shared/errors', obj: @page %>
+<%= form_for page, html:{ multipart: true } do |f| %>
+  <% readonly = option == 'Show' ? true : false %> 
+  <div class="form-row">
+    <div class="form-group  col-md-8">
+      <%= f.label :name %>
+      <%= f.text_field :name , class: 'form-control', readonly: readonly%>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <div class="form-group col-md-4">
+        <%= f.label "screen_id" %>
+        <%= f.collection_select :screen_id , @screens, :id, :name, {},  {:class => 'form-control custom-select', :disabled => readonly} %>
+      
   </div>
-
-  <div class="field">
-    <%= f.label :active %>
-    <%= f.check_box :active %>
   </div>
+  
 
-  <div class="field">
+<div class="form-row">
+  <div class="form-group col-md-4">
     <%= f.label :order %>
-    <%= f.number_field :order %>
+    <%= f.number_field :order , class: 'form-control', readonly: readonly%>
+  </div>
+  <div class="form-group col-md-4">
+    <%= f.label :page_bgcolor %>
+    <div id="bgcolor" class="input-group colorpicker-component" title="Select bgcolor">
+      <%= f.text_field :bgcolor , class: 'form-control input-lg', readonly: readonly %>
+      <span class="input-group-addon"><i></i></span>
+    </div>        
+  </div>
+  <div class="form-check text-rigth col-md-4 align-items-center d-flex">
+    <%= f.label :active , class: 'custom-control custom-checkbox ' do %>
+    <%= f.check_box :active , class: 'custom-control-input', disabled: readonly  %>
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">Active</span>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :bgcolor %>
-    <%= f.text_field :bgcolor %>
-  </div>
+  
 
-  <div class="field">
-    <%= f.label :bgimage %>
-    <%= f.text_field :bgimage %>
-  </div>
+</div>
 
-  <div class="field">
-    <%= f.label :screen_id %>
-    <%= f.text_field :screen_id %>
-  </div>
+<!-- Imagen -->
 
-  <div class="actions">
-    <%= f.submit %>
+
+<% if option != 'Show' %>
+  <div class="form-group">
+    <label>Background Image</label>
+    
+    <%= f.file_field :bgimage, class: 'custom-file'  %>
+    <%= f.hidden_field :bgimage_cache %>
   </div>
 <% end %>
+  <div class="form-group  justify-content-center d-flex">
+    <div class="card mb-3">
+      <%= image_tag(@page.bgimage_url, class: "card-img-top", size: '100%', alt: @page.name ) if @page.bgimage? %>
+      <div class="card-body">
+        <div class="row">
+        
+        </div>
+        
+        
+        
+      </div>
+      
+    </div>
+    
+  </div>
+
+
+<!-- Fin Imagen -->  
+
+  
+
+  <div class="actions d-flex justify-content-center m-3">
+    <% if option != 'Show' %>
+      <%= f.submit class: 'btn btn-primary'  %>
+    <% else %>
+      <%= link_to 'Edit', edit_page_path(page),  'data-toggle' => "tooltip", :title => "Edit Page", :class => "btn btn-primary mr-3" %></td>
+        <%= link_to 'Remove', page_path(page), method: :delete,  data: { confirm: 'Are you sure?' } , 'data-toggle' => "tooltip", :title => "Delete Page", :class => "btn btn-danger"%></td>
+    <% end %>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $(function () {
+    $('#page_bgcolor').colorpicker();
+  });
+</script>
+
+

@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :set_screens_availables, only: [:show, :edit, :new]
 
   # GET /pages
   # GET /pages.json
@@ -70,5 +71,9 @@ class PagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
       params.require(:page).permit(:name, :active, :order, :bgcolor, :bgimage, :screen_id)
+    end
+
+    def set_screens_availables
+      @screens = Screen.where(active: true)
     end
 end
