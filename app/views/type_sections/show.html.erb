@@ -1,24 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1 class="display-3">Showing Type Section</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @type_section.name %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @type_section.active %>
-</p>
-
-<p>
-  <strong>Abrev:</strong>
-  <%= @type_section.abrev %>
-</p>
-
-<p>
-  <strong>Tag:</strong>
-  <%= @type_section.tag %>
-</p>
-
-<%= link_to 'Edit', edit_type_section_path(@type_section) %> |
-<%= link_to 'Back', type_sections_path %>
+<%= render 'form', type_section: @type_section, option: 'Show' %>
+<div class="d-flex justify-content-center">
+	<%= link_to 'Back', type_sections_path %>
+</div>

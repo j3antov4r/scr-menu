@@ -28,7 +28,11 @@ class TypeSectionsController < ApplicationController
 
     respond_to do |format|
       if @type_section.save
-        format.html { redirect_to @type_section, notice: 'Type section was successfully created.' }
+        format.html { 
+           flash[:success]= 'Screen was successfully created.'
+           redirect_to type_sections_path
+           
+        }
         format.json { render :show, status: :created, location: @type_section }
       else
         format.html { render :new }
@@ -42,7 +46,11 @@ class TypeSectionsController < ApplicationController
   def update
     respond_to do |format|
       if @type_section.update(type_section_params)
-        format.html { redirect_to @type_section, notice: 'Type section was successfully updated.' }
+        format.html { 
+           flash[:success]= 'Screen was successfully updated.'
+           redirect_to type_sections_path
+           
+        }
         format.json { render :show, status: :ok, location: @type_section }
       else
         format.html { render :edit }
@@ -56,7 +64,11 @@ class TypeSectionsController < ApplicationController
   def destroy
     @type_section.destroy
     respond_to do |format|
-      format.html { redirect_to type_sections_url, notice: 'Type section was successfully destroyed.' }
+      format.html { 
+           flash[:warning]= 'Screen was successfully deleted.'
+           redirect_to type_sections_path
+           
+        }
       format.json { head :no_content }
     end
   end

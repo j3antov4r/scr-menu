@@ -1,33 +1,45 @@
-<p id="notice"><%= notice %></p>
+<h1 class="display-3 text-center">All Type Sections</h1>
+<p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
 
-<h1>Type Sections</h1>
+<div class="float-right align-items-center my-1 mr-3">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Active</th>
-      <th>Abrev</th>
-      <th>Tag</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <%=link_to " " , new_type_section_path, 'data-toggle' => "tooltip", :title => "New type_section", :class => "fa fa-plus btn btn-success btn-sm " %>
+  
+</div>
+
+<div class="container">
+  <table class="table table-striped">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Tag</th>
+        <th scope="col">Abbrev</th>
+        <th scope="col">Active</th>
+        
+        <th scope="col" colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+
 
   <tbody>
-    <% @type_sections.each do |type_section| %>
+    <%  @type_sections.each do |type_section| %>
       <tr>
-        <td><%= type_section.name %></td>
-        <td><%= type_section.active %></td>
-        <td><%= type_section.abrev %></td>
+        <td><%= link_to type_section.name, display %></td>
         <td><%= type_section.tag %></td>
-        <td><%= link_to 'Show', type_section %></td>
-        <td><%= link_to 'Edit', edit_type_section_path(type_section) %></td>
-        <td><%= link_to 'Destroy', type_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= type_section.abrev %></td>
+        <td class="text-center"><% if type_section.active == true %> 
+              <i class="fa fa-check text-success"> </i>
+            <% else %>
+            <i class="fa fa-minus text-danger"> </i>
+            <% end %>
+        </td>
+        
+        <td><%= link_to '', edit_type_section_path(type_section),  'data-toggle' => "tooltip", :title => "Edit Display", :class => "fa fa-edit " %></td>
+        <td><%= link_to '', type_section_path(type_section), method: :delete,  data: { confirm: 'Are you sure?' } , 'data-toggle' => "tooltip", :title => "Delete Display", :class => "fa fa-times danger"%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Type Section', new_type_section_path %>

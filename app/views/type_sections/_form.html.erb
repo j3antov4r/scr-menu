@@ -1,37 +1,49 @@
-<%= form_for(type_section) do |f| %>
-  <% if type_section.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(type_section.errors.count, "error") %> prohibited this type_section from being saved:</h2>
-
-      <ul>
-      <% type_section.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= render 'shared/errors', obj: @type_section %>
+<%= form_for type_section, html:{ multipart: true } do |f| %>
+  <% readonly = option == 'Show' ? true : false %> 
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name , class: 'form-control', readonly: readonly%>
     </div>
-  <% end %>
+    
+      
+  
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :active %>
-    <%= f.check_box :active %>
-  </div>
-
-  <div class="field">
+<div class="form-row">
+  <div class="form-group col-md-4">
     <%= f.label :abrev %>
-    <%= f.text_field :abrev %>
+    <%= f.text_field :abrev , class: 'form-control', readonly: readonly%>
   </div>
-
-  <div class="field">
+  <div class="form-group col-md-4">
     <%= f.label :tag %>
-    <%= f.text_field :tag %>
+    <%= f.text_field :tag , class: 'form-control', readonly: readonly %>
+           
+  </div>
+  <div class="form-check text-rigth col-md-4 align-items-center d-flex">
+    <%= f.label :active , class: 'custom-control custom-checkbox ' do %>
+    <%= f.check_box :active , class: 'custom-control-input', disabled: readonly  %>
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">Active</span>
+    <% end %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  
+
+</div>
+
+<!-- Imagen -->
+
+
+
+  
+
+  <div class="actions d-flex justify-content-center m-3">
+    <% if option != 'Show' %>
+      <%= f.submit class: 'btn btn-primary'  %>
+    <% else %>
+      <%= link_to 'Edit', edit_type_section_path(type_section),  'data-toggle' => "tooltip", :title => "Edit Type Section", :class => "btn btn-primary mr-3" %></td>
+        <%= link_to 'Remove', type_section_path(type_section), method: :delete,  data: { confirm: 'Are you sure?' } , 'data-toggle' => "tooltip", :title => "Delete Type Section", :class => "btn btn-danger"%></td>
+    <% end %>
   </div>
 <% end %>
+

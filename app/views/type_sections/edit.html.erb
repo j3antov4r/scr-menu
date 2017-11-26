@@ -1,6 +1,7 @@
-<h1>Editing Type Section</h1>
+<h1 class="display-3">Editing Type Section</h1>
 
-<%= render 'form', type_section: @type_section %>
+<%= render 'form', type_section: @type_section, option: 'Edit ' %>
 
-<%= link_to 'Show', @type_section %> |
+<div class="d-flex justify-content-center">
 <%= link_to 'Back', type_sections_path %>
+</div>
