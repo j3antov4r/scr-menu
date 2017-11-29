@@ -20,3 +20,12 @@
 	CarteItem.create(name:'Steak and Shrimp', description: 'Grilled Steak and Shrimp with Cajun season', price: 11.99, lineage: '1-4-11', parent_id: 4, active: true)
 	CarteItem.create(name:'Orange Juice', description: 'From Californias Oranges', price: 1.99, lineage: '1-5-12', parent_id: 5, active: true)
 	CarteItem.create(name:'Soft Drinks', description: 'Coke, Fanta, Dr. Pepper', price: 1.99, lineage: '1-5-13', parent_id: 5, active: true)
+
+	TypeSection.create(name:'Header', tag: 'header', abrev: 'head', active:true)
+	TypeSection.create(name:'Footer', tag: 'footer', abrev: 'foot', active:true)
+	TypeSection.create(name:'List', tag: 'list', abrev: 'list', active:true)
+	TypeSection.create(name:'Title', tag: 'title', abrev: 'titl', active:true)
+	TypeSection.create(name:'Text', tag: 'text', abrev: 'text', active:true)
+	TypeSection.create(name:'Image', tag: 'image', abrev: 'imag', active:true)
+	TypeSection.create(name:'Decoration', tag: 'decoration', abrev: 'deco', active:true)
+	TypeSection.create(name:'Icon', tag: 'icon', abrev: 'icon', active:true)

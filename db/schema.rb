@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114222205) do
+ActiveRecord::Schema.define(version: 20171126201641) do
 
   create_table "carte_components", force: :cascade do |t|
     t.string   "name"
@@ -52,14 +52,16 @@ ActiveRecord::Schema.define(version: 20171114222205) do
   end
 
   create_table "screens", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.boolean  "active",     default: true
+    t.string   "name",                              null: false
+    t.boolean  "active",           default: true
     t.integer  "order"
     t.string   "bgcolor"
     t.string   "bgimage"
     t.integer  "display_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.float    "proportion",       default: 1.0
+    t.string   "efect_transition", default: "none"
     t.index ["display_id"], name: "index_screens_on_display_id"
   end
 

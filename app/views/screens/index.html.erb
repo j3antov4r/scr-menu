@@ -29,7 +29,7 @@
         <td><%= link_to screen.name, display %></td>
         <td><%= screen.order %></td>
         <td><%= screen.bgcolor %></td>
-        <td><%= screen.display.name%></td>
+        <td><%= screen.display.name if screen.display != nil %></td>
         <td class="text-center"><% if screen.active == true %> 
               <i class="fa fa-check text-success"> </i>
             <% else %>

@@ -9,22 +9,58 @@
   </div>
 
   <div class="form-row">
-  <div class="form-group col-md-4">
-    <%= f.label :resolution %>
-    <%= f.text_field :resolution, class: 'form-control',  readonly: readonly %>
+    <div class="form-group col-md-4">
+      <%= f.label :resolution %>
+      <%= f.text_field :resolution, class: 'form-control',  readonly: readonly %>
+    </div>
+    <div class="form-group col-md-4">
+      <%= f.label :order %>
+      <%= f.number_field :order, class: 'form-control',  readonly: readonly %>
+    </div>
+    <div class="form-check text-rigth col-md-4 align-items-center d-flex">
+      <%= f.label :active , class: 'custom-control custom-checkbox ' do %>
+      <%= f.check_box :active , class: 'custom-control-input', disabled: readonly  %>
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Active</span>
+      <% end %>
+    </div>
   </div>
-  <div class="form-group col-md-4">
-    <%= f.label :order %>
-    <%= f.number_field :order, class: 'form-control',  readonly: readonly %>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <% cscreens= display.screens.count %>
+      <label for="split_in">Split in</label>
+      <select class="custom-select" id="split_in" name="split_in" <%= 'disabled' if option != 'New '%>>
+        <option value="">Select one...</option>
+        <option value="1" <%= 'selected' if cscreens == 1 %>>One Screen</option>
+        <option value="2" <%= 'selected' if cscreens == 2 %>>Two Screens</option>
+        <option value="3" <%= 'selected' if cscreens == 3 %> >Three Screens</option>
+      </select>
+    </div>
+    <div class="form-group col-md-8">
+      <table class="table table-bordered">
+        <tbody>
+          <tr class="text-center  bg-secondary">
+            <% case cscreens %>
+            <% when 1 %>
+              <td class="d-none">Left</td>
+              <td class="">Center</td>
+              <td class="d-none">Rigth</td>
+            <% when 2 %>
+              <td class="">Left</td>
+              <td class="d-none">Center</td>
+              <td class="">Rigth</td>
+            <% else %>
+              <td class="">Left</td>
+              <td class="">Center</td>
+              <td class="">Rigth</td>
+            
+            
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="form-check text-rigth col-md-4 align-items-center d-flex">
-    <%= f.label :active , class: 'custom-control custom-checkbox ' do %>
-    <%= f.check_box :active , class: 'custom-control-input', disabled: readonly  %>
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Active</span>
-    <% end %>
-  </div>
-</div>
 
 
   <div class="actions d-flex justify-content-center m-3">
@@ -36,3 +72,30 @@
     <% end %>
   </div>
 <% end %>
+<script>
+$('#split_in').change(function() {
+
+    var $first = $('table').find('tr').find('td:nth-child(1)'),
+        $second = $('table').find('tr').find('td:nth-child(2)'),
+        $third = $('table').find('tr').find('td:nth-child(3)')
+        $v = $(this).val();
+
+    $first.addClass("d-none");
+    $second.addClass("d-none");
+    $third.addClass("d-none");
+
+    if ($v == '1'){
+      $second.removeClass("d-none"); 
+    } else if ($v == '2') {
+      $first.removeClass("d-none"); 
+      $third.removeClass("d-none"); 
+    } else if ($v == '3') {
+        $first.removeClass("d-none"); 
+        $second.removeClass("d-none"); 
+        $third.removeClass("d-none"); 
+    }
+}); 
+
+window.onload= change();
+  
+</script>

@@ -29,7 +29,7 @@
         <td><%= link_to page.name, page %></td>
         <td><%= page.order %></td>
         <td><%= page.bgcolor %></td>
-        <td><%= page.screen.name%></td>
+        <td><%= page.screen.display.name + " / " + page.screen.name%></td>
         <td class="text-center"><% if page.active == true %> 
               <i class="fa fa-check text-success"> </i>
             <% else %>

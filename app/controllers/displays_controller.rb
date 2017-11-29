@@ -26,9 +26,14 @@ class DisplaysController < ApplicationController
   # POST /displays.json
   def create
     @display = Display.new(display_params)
+    screens_num = params[:split_in];
+    # creamos las screens necesarias
+    saved = @display.save
+    
+    create_screens(screens_num)
 
     respond_to do |format|
-      if @display.save
+      if saved
         format.html { 
                       flash[:success]= 'Display was successfully created.' 
                       redirect_to displays_path 
@@ -82,4 +87,37 @@ class DisplaysController < ApplicationController
     def display_params
       params.require(:display).permit(:name, :active, :order, :resolution)
     end
+
+    def create_screens(i)
+      case i
+        when '1'
+          mys = @display.screens.create(name: 'Unique', order: 1, active: true, bgcolor: '#ffffff' )
+          mypage_name= @display.name + "-" + mys.name + "-page-one"
+          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff');
+        when '2'
+          mys = @display.screens.create(name: 'Left', order: 1, active: true, bgcolor: '#ffffff', proportion: 0.5 )
+          mypage_name= @display.name + "-" + mys.name + "-page-one"
+          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff');
+          
+          mys = @display.screens.create(name: 'Rigth', order: 2, active: true, bgcolor: '#ffffff', proportion: 0.5 )
+          mypage_name= @display.name + "-" + mys.name + "-page-one"
+          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff');
+        when '3'
+          mys = @display.screens.create(name: 'Left', order: 1, active: true, bgcolor: '#ffffff', proportion: 0.33 )
+          mypage_name= @display.name + "-" + mys.name + "-page-one"
+          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff');
+
+          mys = @display.screens.create(name: 'Center', order: 2, active: true, bgcolor: '#ffffff', proportion: 0.33 )
+          mypage_name= @display.name + "-" + mys.name + "-page-one"
+          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff');
+
+          mys = @display.screens.create(name: 'Rigth', order: 3, active: true, bgcolor: '#ffffff', proportion: 0.33 )
+          mypage_name= @display.name + "-" + mys.name + "-page-one"
+          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff');
+
+      end
+
+
+    end
+    
 end

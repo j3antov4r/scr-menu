@@ -8,12 +8,13 @@
 </div>
 
 <div class="container">
-  <table class="table table-striped">
+  <table class="table table-striped table-md-responsive">
     <thead class="table-primary">
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Order</th>
         <th scope="col">Resolution</th>
+        <th scope="col">Screens</th>
         <th scope="col">Active</th>
         
         <th scope="col" colspan="2"></th>
@@ -28,6 +29,7 @@
         <td><%= link_to display.name, display %></td>
         <td><%= display.order %></td>
         <td><%= display.resolution %></td>
+        <td><%= display.screens.count %></td>
         <td class="text-center"><% if display.active == true %> 
               <i class="fa fa-check text-success"> </i>
             <% else %>
