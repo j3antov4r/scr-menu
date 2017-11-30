@@ -15,6 +15,7 @@ class DisplaysController < ApplicationController
   # GET /displays/new
   def new
     @display = Display.new
+    @templates = SkinTemplate.where(active: true)
   end
 
   # GET /displays/1/edit
@@ -89,31 +90,33 @@ class DisplaysController < ApplicationController
     end
 
     def create_screens(i)
+      #Setting the Default SkinTemplate
+      dst= SkinTemplate.find(params[:template])
       case i
         when '1'
           mys = @display.screens.create(name: 'Unique', order: 1, active: true, bgcolor: '#ffffff' )
           mypage_name= @display.name + "-" + mys.name + "-page-one"
-          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff');
+          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst);
         when '2'
           mys = @display.screens.create(name: 'Left', order: 1, active: true, bgcolor: '#ffffff', proportion: 0.5 )
           mypage_name= @display.name + "-" + mys.name + "-page-one"
-          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff');
+          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst);
           
           mys = @display.screens.create(name: 'Rigth', order: 2, active: true, bgcolor: '#ffffff', proportion: 0.5 )
           mypage_name= @display.name + "-" + mys.name + "-page-one"
-          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff');
+          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst);
         when '3'
           mys = @display.screens.create(name: 'Left', order: 1, active: true, bgcolor: '#ffffff', proportion: 0.33 )
           mypage_name= @display.name + "-" + mys.name + "-page-one"
-          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff');
+          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst);
 
           mys = @display.screens.create(name: 'Center', order: 2, active: true, bgcolor: '#ffffff', proportion: 0.33 )
           mypage_name= @display.name + "-" + mys.name + "-page-one"
-          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff');
+          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst);
 
           mys = @display.screens.create(name: 'Rigth', order: 3, active: true, bgcolor: '#ffffff', proportion: 0.33 )
           mypage_name= @display.name + "-" + mys.name + "-page-one"
-          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff');
+          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst);
 
       end
 

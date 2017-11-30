@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171126201641) do
+ActiveRecord::Schema.define(version: 20171130055534) do
 
   create_table "carte_components", force: :cascade do |t|
     t.string   "name"
@@ -40,15 +40,17 @@ ActiveRecord::Schema.define(version: 20171126201641) do
   end
 
   create_table "pages", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.boolean  "active",     default: true
+    t.string   "name",                            null: false
+    t.boolean  "active",           default: true
     t.integer  "order"
     t.string   "bgcolor"
     t.string   "bgimage"
     t.integer  "screen_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "skin_template_id"
     t.index ["screen_id"], name: "index_pages_on_screen_id"
+    t.index ["skin_template_id"], name: "index_pages_on_skin_template_id"
   end
 
   create_table "screens", force: :cascade do |t|
@@ -66,18 +68,40 @@ ActiveRecord::Schema.define(version: 20171126201641) do
   end
 
   create_table "sections", force: :cascade do |t|
-    t.string   "name",                           null: false
-    t.boolean  "active",          default: true
+    t.boolean  "active",                   default: true
     t.string   "position"
-    t.string   "class"
+    t.string   "type_class"
     t.integer  "order"
     t.string   "tag"
-    t.integer  "type_section_id"
     t.integer  "page_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "skin_template_section_id"
+    t.string   "property"
+    t.string   "method"
+    t.string   "static"
+    t.string   "collection"
     t.index ["page_id"], name: "index_sections_on_page_id"
-    t.index ["type_section_id"], name: "index_sections_on_type_section_id"
+    t.index ["skin_template_section_id"], name: "index_sections_on_skin_template_section_id"
+  end
+
+  create_table "skin_template_sections", force: :cascade do |t|
+    t.integer  "order"
+    t.integer  "type_section_id"
+    t.integer  "skin_template_id"
+    t.string   "class_styling"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["skin_template_id"], name: "index_skin_template_sections_on_skin_template_id"
+    t.index ["type_section_id"], name: "index_skin_template_sections_on_type_section_id"
+  end
+
+  create_table "skin_templates", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "active"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "type_sections", force: :cascade do |t|

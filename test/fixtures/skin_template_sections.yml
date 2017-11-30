@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order: 1
+  type_section: one
+  skin_template: one
+  class_styling: MyString
+
+two:
+  order: 1
+  type_section: two
+  skin_template: two
+  class_styling: MyString
