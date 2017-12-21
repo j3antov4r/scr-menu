@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
-  before_action :set_screens_availables, only: [:show, :edit, :new]
+  before_action :set_screens_availables, only: [:show, :edit, :new, :update]
 
   # GET /pages
   # GET /pages.json
@@ -20,6 +20,10 @@ class PagesController < ApplicationController
 
   # GET /pages/1/edit
   def edit
+    @my_template = @page.skin_template
+    @my_tsections= @my_template.skin_template_sections
+    @my_values = @page.sections
+    @my_carte = @page.carte 
   end
 
   # POST /pages
@@ -85,5 +89,7 @@ class PagesController < ApplicationController
 
     def set_screens_availables
       @screens = Screen.where(active: true)
+      @skin_templates = SkinTemplate.where(active: true)
+      @cartes = Carte.where(active: true)
     end
 end

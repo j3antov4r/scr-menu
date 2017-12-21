@@ -20,7 +20,7 @@ class DisplaysController < ApplicationController
 
   # GET /displays/1/edit
   def edit
-
+    @templates = SkinTemplate.where(active: true)
   end
 
   # POST /displays
@@ -96,30 +96,46 @@ class DisplaysController < ApplicationController
         when '1'
           mys = @display.screens.create(name: 'Unique', order: 1, active: true, bgcolor: '#ffffff' )
           mypage_name= @display.name + "-" + mys.name + "-page-one"
-          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst);
+          p= mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst, carte_id: 1);
+          add_sections_to(p,dst)
+
         when '2'
           mys = @display.screens.create(name: 'Left', order: 1, active: true, bgcolor: '#ffffff', proportion: 0.5 )
           mypage_name= @display.name + "-" + mys.name + "-page-one"
-          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst);
-          
+          p= mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst, carte_id: 1);
+          add_sections_to(p,dst)
+
           mys = @display.screens.create(name: 'Rigth', order: 2, active: true, bgcolor: '#ffffff', proportion: 0.5 )
           mypage_name= @display.name + "-" + mys.name + "-page-one"
-          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst);
+          p= mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst, carte_id: 1);
+          add_sections_to(p,dst)
         when '3'
           mys = @display.screens.create(name: 'Left', order: 1, active: true, bgcolor: '#ffffff', proportion: 0.33 )
           mypage_name= @display.name + "-" + mys.name + "-page-one"
-          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst);
+          p= mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst, carte_id: 1);
+          add_sections_to(p,dst)
 
           mys = @display.screens.create(name: 'Center', order: 2, active: true, bgcolor: '#ffffff', proportion: 0.33 )
           mypage_name= @display.name + "-" + mys.name + "-page-one"
-          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst);
+          p= mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst, carte_id: 1);
+          add_sections_to(p,dst)
 
           mys = @display.screens.create(name: 'Rigth', order: 3, active: true, bgcolor: '#ffffff', proportion: 0.33 )
           mypage_name= @display.name + "-" + mys.name + "-page-one"
-          mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst);
+          p= mys.pages.create(name: mypage_name, order: 1, active: true, bgcolor: '#ffffff', skin_template: dst, carte_id: 1);
+          add_sections_to(p,dst)
 
       end
 
+
+    end
+
+    def add_sections_to(my_page, dst)
+
+      dst.skin_template_sections.each do |ss|
+          mysec= Section.new(page: my_page, skin_template_section: ss, order: ss.order)
+          mysec.save
+      end
 
     end
     

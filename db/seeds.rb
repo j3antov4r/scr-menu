@@ -41,6 +41,5 @@
 	st.skin_template_sections.create(order: 4, type_section_id: 4, class_styling: 'bg-dark')
 
 	#Section samples
-	#s = p.sections.create(position: 'text-center', class: 'Carte', order: 1, type_section_id: 1, skin_template_section_id: 1, method: 'find(1)', prorpety: 'name')
- 
+	
 

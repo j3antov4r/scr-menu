@@ -4,6 +4,8 @@ class Carte < CarteComponent
 	validates :name, length: {minimum: 4, maximum: 50}
 	validates :description, length: {minimum: 4, maximum: 140}
 
+	has_many :pages
+
 	# Metodos Composite Pattern
 	def add(menu_component)
 		menu_component.parent = self

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130055534) do
+ActiveRecord::Schema.define(version: 20171221214241) do
 
   create_table "carte_components", force: :cascade do |t|
     t.string   "name"
@@ -40,17 +40,16 @@ ActiveRecord::Schema.define(version: 20171130055534) do
   end
 
   create_table "pages", force: :cascade do |t|
-    t.string   "name",                            null: false
-    t.boolean  "active",           default: true
+    t.string   "name",                             null: false
+    t.boolean  "active",            default: true
     t.integer  "order"
     t.string   "bgcolor"
     t.string   "bgimage"
     t.integer  "screen_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "skin_template_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "skin_template_ref"
     t.index ["screen_id"], name: "index_pages_on_screen_id"
-    t.index ["skin_template_id"], name: "index_pages_on_skin_template_id"
   end
 
   create_table "screens", force: :cascade do |t|
@@ -69,18 +68,18 @@ ActiveRecord::Schema.define(version: 20171130055534) do
 
   create_table "sections", force: :cascade do |t|
     t.boolean  "active",                   default: true
-    t.string   "position"
-    t.string   "type_class"
     t.integer  "order"
-    t.string   "tag"
     t.integer  "page_id"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.integer  "skin_template_section_id"
-    t.string   "property"
-    t.string   "method"
-    t.string   "static"
-    t.string   "collection"
+    t.string   "font_color"
+    t.string   "font_size"
+    t.string   "static_image"
+    t.string   "static_text"
+    t.string   "type"
+    t.integer  "dinamic_ref"
+    t.string   "dinamic_expression"
     t.index ["page_id"], name: "index_sections_on_page_id"
     t.index ["skin_template_section_id"], name: "index_sections_on_skin_template_section_id"
   end
@@ -102,6 +101,8 @@ ActiveRecord::Schema.define(version: 20171130055534) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "edit_form"
+    t.string   "showroom"
   end
 
   create_table "type_sections", force: :cascade do |t|

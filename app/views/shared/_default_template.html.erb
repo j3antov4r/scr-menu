@@ -1,0 +1,11 @@
+<% 
+i = 0;
+@my_tsections.each do | s| %>
+	<div class="form-group">
+		<label for="header"><%= s.type_section.name%></label>
+		<input type="text" class="form-control" name="<%= s.type_section.name %>" value="<%= @my_values[i].property%>">
+	</div>
+
+<% 
+	i = i + 1
+end %>
