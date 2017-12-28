@@ -72,18 +72,14 @@
 <div class="form-row">
   <div class="form-group col-md-4">
 
-        <%= f.label "skin_template_id" %>
-        <%= f.collection_select :skin_template_id , @skin_templates, :id, :name, {},  {:class => 'form-control custom-select', :disabled => readonly} %>
+        <%= f.label "skin_template_ref" %>
+        <%= f.collection_select :skin_template_ref , @skin_templates, :id, :name, {},  {:class => 'form-control custom-select', :disabled => readonly} %>
       
   </div>
-  <div class="form-group col-md-4">
 
-        <%= f.label "carte_id" %>
-        <%= f.collection_select :carte_id , @cartes, :id, :name, {},  {:class => 'form-control custom-select', :disabled => readonly} %>
-      
-  </div>
+  
 </div>
-<%= render @page.skin_template.edit_form if @page.skin_template != nil  %>
+<%= render SkinTemplate.find(@page.skin_template_ref).edit_form if @page.skin_template_ref != nil  %>
 
 <!-- Fin Content and Sections--> 
 

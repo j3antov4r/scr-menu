@@ -10,6 +10,7 @@ class DisplaysController < ApplicationController
   # GET /displays/1
   # GET /displays/1.json
   def show
+    @templates = SkinTemplate.where(active: true)
   end
 
   # GET /displays/new
